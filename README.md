@@ -35,8 +35,7 @@ trading_bot/
 ├── requirements.txt           # Dependencies
 ├── .env                       # API keys (do not commit)
 ├── .env.example               # Template for .env
-├── .gitignore                 # Git ignore rules
-├── bot.log                    # Execution logs
+├── .gitignore                 # Git ignore rules        
 └── README.md                  # This file
 ```
 
