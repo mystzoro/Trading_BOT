@@ -1,14 +1,26 @@
 # Binance Futures Testnet Trading Bot
 
-A lightweight CLI-based trading bot for placing MARKET and LIMIT orders on Binance Futures testnet. 
+A Python-based CLI trading bot that interacts with Binance Futures Testnet to place MARKET and LIMIT orders with validation, logging, and modular architecture.
+
+Built as part of a technical assessment to demonstrate API integration, CLI design, and structured Python development.
 
 ## Features
-- ✅ Place **MARKET** and **LIMIT** orders
-- ✅ Support for **BUY** and **SELL** operations
-- ✅ CLI-based input with validation
-- ✅ Comprehensive logging to `bot.log`
-- ✅ Error handling and API exception management
-- ✅ Clean, modular project structure
+- Place **MARKET** and **LIMIT** orders
+- Support for **BUY** and **SELL** operations
+- CLI-based input with validation
+- Logging to `bot.log`
+- Error handling and API exception management
+- Clean, modular project structure
+
+## Architecture
+
+`CLI -> Validation -> Order Execution -> Binance API -> Logging`
+
+- `cli.py`: Handles user input and prints results
+- `validators.py`: Validates symbols, order side, type, quantity, and price
+- `orders.py`: Sends futures order requests to Binance
+- `client.py`: Creates the Binance client using environment variables
+- `logging_config.py`: Configures file and console logging
 
 ## Project Structure
 ```
@@ -68,7 +80,7 @@ Order ID: 13095921164
 Symbol: BTCUSDT
 Side: SELL
 Type: LIMIT
-Quantity: 0.001
+Quantity: 0.0010
 Price: 75000.00
 Avg Price: 0.00
 Executed Qty: 0.0000
@@ -81,6 +93,13 @@ All orders and errors are logged to `bot.log` with timestamps and details:
 - Request parameters (symbol, side, type, quantity, price)
 - Full API response
 - Error messages and stack traces
+
+## Error Handling
+
+- Handles invalid CLI inputs before placing orders
+- Catches Binance API exceptions during order submission
+- Logs all failures in `bot.log` for debugging
+- Prints concise error messages to the console
 
 ## Input Validation
 The CLI validates:
@@ -102,6 +121,15 @@ Both MARKET and LIMIT orders have been tested successfully:
 - LIMIT SELL order: ✅ Placed and logged
 
 See `bot.log` for full execution logs.
+
+## Sample Output
+
+```text
+✅ ORDER SUCCESS
+Order ID: 123456
+Status: FILLED
+Executed Qty: 0.0010
+```
 
 ## Notes
 - Keep `.env` out of version control (added to `.gitignore`)
